@@ -9,15 +9,15 @@ editor, personal presets, global shortcuts, and a system-tray menu.
 
 ## Get the private build
 
-Sign in to GitHub with an account that can access
-[ProjectScope-Windows](https://github.com/DMoneyManZ/ProjectScope-Windows), open
-**Actions → Private Windows preview**, and select a successful run. Download the
-`ProjectScope-Windows-1.1.0-preview.1-<run-id>` artifact and extract that download.
-Build logs, source, screenshots, and packages stay within this private repository.
-The workflow does not publish GitHub releases or upload anything to the public
-Linux repository.
+Sign in to GitHub with an account that can access the private
+[ProjectScope-Windows releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
+Download the preview installer or portable ZIP and its `SHA256SUMS` file.
+The build workflow stores tested packages and synthetic validation in private
+draft releases; reviewed previews are listed on that same releases page.
+Source, logs, screenshots, and packages remain within this private repository.
+Nothing is uploaded to the public Linux repository.
 
-The artifact contains:
+A preview contains:
 
 | File | Purpose |
 |---|---|
@@ -34,7 +34,7 @@ Get-Content .\SHA256SUMS
 
 Compare the hash with the line for that exact filename. The preview build is
 unsigned; Windows may show an unknown-publisher prompt. Obtain it from the
-private workflow above and keep Windows security protections enabled.
+private repository above and keep Windows security protections enabled.
 
 ## Portable installation
 
@@ -53,7 +53,7 @@ profile, not on the drive beside the executable.
 
 ## Optional setup executable
 
-If the artifact includes `ProjectScope-Windows-1.1.0-preview.1-Setup.exe`, run it
+If the release includes `ProjectScope-Windows-1.1.0-preview.1-Setup.exe`, run it
 as your normal Windows user. It installs under
 `%LOCALAPPDATA%\Programs\ProjectScope`, creates a Start-menu shortcut, and offers
 an optional desktop shortcut. It does not request elevation or install a driver,
@@ -123,7 +123,7 @@ performance. Exclusive-fullscreen and protected-game overlays are not guaranteed
 ProjectScope does not inject into games, read game memory, automate input, or
 change anti-cheat settings. Game and server rules still apply.
 
-The private validation artifact contains the frozen application's synthetic
+The private `Windows-validation.zip` download contains the frozen application's synthetic
 editor screenshot, native Windows smoke report, package file inventory, and
 build dependency versions. The smoke report distinguishes the actual Windows Qt
 platform from offscreen rendering. Normal operation does not capture the desktop;
