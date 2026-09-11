@@ -54,6 +54,10 @@ Windows CI tests portable presets, preferences, Qt rendering and controls, and n
 
 On Linux, portable UI tests use Qt's offscreen platform and do not prove Windows-native behavior. Real hardware checks are still needed for game behavior, taskbar/tray appearance, display scaling and monitor hotplug.
 
+## Support development
+
+ProjectScope is free and open source. If it helps you, you can [support development with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=demurphy242%40gmail.com&item_name=Support+ProjectScope+development&currency_code=USD). Choose any amount; contributions are optional and help support maintenance and improvements.
+
 ## License
 
 Copyright © 2026 DMoneyManZ. [GPL-3.0-only](LICENSE). Dependency notices and corresponding source information ship with the Windows package. Private repository visibility does not change the license of the underlying ProjectScope code.

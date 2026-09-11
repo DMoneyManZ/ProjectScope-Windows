@@ -158,3 +158,7 @@ Application source and build scripts are included under
 `_internal\source\dependencies`; original license texts and component versions
 are under `_internal\licenses`. Read `THIRD-PARTY-NOTICES.md` beside the executable
 for the runtime components and rebuild information.
+
+## Support development
+
+ProjectScope is free and open source. If it helps you, you can [support development with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=demurphy242%40gmail.com&item_name=Support+ProjectScope+development&currency_code=USD). Choose any amount; contributions are optional and help support maintenance and improvements.
