@@ -4,7 +4,11 @@
 
 Private development of the Windows edition of ProjectScope. Create a crosshair, tune it live, and keep it on screen with the editor tucked into the system tray.
 
-**Status: Windows preview in development.** The [public Linux edition](https://github.com/DMoneyManZ/ProjectScope) remains a separate GNOME application. This repository and its Windows build artifacts are private.
+**Status: private Windows preview 1.1.0-preview.1 available.** The [public Linux edition](https://github.com/DMoneyManZ/ProjectScope) remains a separate GNOME application. This repository and its Windows build artifacts are private.
+
+[Download the Windows preview](https://github.com/DMoneyManZ/ProjectScope-Windows/releases/tag/v1.1.0-preview.1) · [Install guide](docs/WINDOWS-INSTALL.md) · [Verified build results](docs/VALIDATION.md)
+
+![ProjectScope running on the native Windows Qt platform](docs/images/windows-editor.png)
 
 ## What is included
 
@@ -18,7 +22,7 @@ The first Windows backend uses ordinary opacity blending. GNOME's destination-co
 
 ## Install or build
 
-See the [Windows installation guide](docs/WINDOWS-INSTALL.md) for private downloads, bundled dependencies, source builds, and uninstall instructions. Preview downloads will be listed in this repository's [Releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
+See the [Windows installation guide](docs/WINDOWS-INSTALL.md) for private downloads, bundled dependencies, source builds, and uninstall instructions. Preview downloads are listed in this repository's [Releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
 
 From source on Windows with Python 3.12:
 

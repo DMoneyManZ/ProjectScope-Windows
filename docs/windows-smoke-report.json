@@ -1,0 +1,26 @@
+{
+  "platform": "win32",
+  "qt_platform": "windows",
+  "presets": 30,
+  "editor_visible": true,
+  "profile": "cs2-precision",
+  "screenshot_saved": true,
+  "hotkeys_active": [
+    "color",
+    "next",
+    "previous",
+    "random",
+    "save",
+    "size_down",
+    "size_up",
+    "thickness_down",
+    "thickness_up",
+    "toggle"
+  ],
+  "native_overlay_style": 134742184,
+  "click_through": true,
+  "no_activate": true,
+  "layered": true,
+  "point_passes_through": true,
+  "passed": true
+}
