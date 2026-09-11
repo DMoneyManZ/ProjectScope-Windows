@@ -21,6 +21,18 @@ STAGE.mkdir(parents=True, exist_ok=True)
 VERSION = '1.1.0-preview.1'
 QT_VERSION = '6.11.2'
 
+# Keep the runtime wheels matched to the dependency sources bundled below,
+# including builds that skip dependency installation.
+for package, expected in (('PySide6-Essentials', QT_VERSION),
+                          ('shiboken6', QT_VERSION), ('PyInstaller', '6.22.2')):
+    try:
+        installed = importlib.metadata.version(package)
+    except importlib.metadata.PackageNotFoundError:
+        raise SystemExit(f'Required build dependency is missing: {package}=={expected}')
+    if installed != expected:
+        raise SystemExit(f'{package}=={expected} is required; found {installed}. '
+                         'Install windows/requirements.txt before building.')
+
 # The icon is rendered from the same SVG used by the application.
 from PySide6.QtCore import QByteArray, Qt
 from PySide6.QtGui import QImage, QPainter

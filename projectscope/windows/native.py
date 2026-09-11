@@ -162,9 +162,13 @@ class NativeHotkeys(QAbstractNativeEventFilter):
     def nativeEventFilter(self, eventType, message):
         if self._closed or bytes(eventType) not in (b'windows_generic_MSG', b'windows_dispatcher_MSG'):
             return False, 0
-        if not message:
+        # Qt supplies a shiboken VoidPtr whose truth value describes buffer
+        # length, not whether the address is null. Native MSG pointers commonly
+        # have length zero; an unknown length can also make bool() raise.
+        address = 0 if message is None else int(message)
+        if not address:
             return False, 0
-        msg = MSG.from_address(int(message))
+        msg = MSG.from_address(address)
         if msg.message != WM_HOTKEY:
             return False, 0
         for action, (_, combo) in tuple(self._active.items()):

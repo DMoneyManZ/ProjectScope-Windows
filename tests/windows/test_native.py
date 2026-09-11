@@ -3,6 +3,7 @@ import os
 import sys
 import unittest
 from unittest.mock import patch
+from shiboken6 import VoidPtr
 
 if sys.platform != 'win32':
     os.environ.setdefault('QT_QPA_PLATFORM', 'offscreen')
@@ -67,6 +68,23 @@ class NativeHotkeyTests(unittest.TestCase):
         self.assertEqual(self.backend.registered, {})
         self.assertEqual(self.dispatch(identifier), (False, 0))
         self.assertIn('toggle', self.hotkeys.register({'toggle': 'Home'}))
+
+    def test_qt_void_pointer_dispatch_does_not_depend_on_buffer_length(self):
+        self.assertEqual(self.hotkeys.register({'toggle': 'Ctrl+Shift+F11'}), {})
+        message = native.MSG()
+        message.message = 0x0312
+        message.wParam = next(iter(self.backend.registered))
+        message.lParam = 6 | 0x7A << 16
+        # PySide passes void* native messages as VoidPtr, not Python integers.
+        # Its bool() checks buffer size, so a valid zero-size pointer is false
+        # and an unknown-size pointer raises IndexError.
+        for size in (0, -1):
+            with self.subTest(size=size):
+                pointer = VoidPtr(ctypes.addressof(message), size)
+                self.assertEqual(self.hotkeys.nativeEventFilter(b'windows_generic_MSG', pointer), (True, 0))
+        self.assertEqual(self.calls, ['toggle', 'toggle'])
+        self.assertEqual(self.hotkeys.nativeEventFilter(b'windows_generic_MSG', VoidPtr(0, 0)), (False, 0))
+        self.assertEqual(self.hotkeys.nativeEventFilter(b'windows_generic_MSG', None), (False, 0))
 
     def test_invalid_or_duplicate_mapping_leaves_active_shortcuts_working(self):
         self.hotkeys.register({'toggle': 'Home'})
