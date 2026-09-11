@@ -1,4 +1,4 @@
-name: Private Windows preview
+name: Windows preview
 
 on:
   workflow_dispatch:
@@ -23,13 +23,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: windows-private-${{ github.ref }}
+  group: windows-preview-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   windows-preview:
-    # Never run the Windows build or upload its source/binaries in a public repo.
-    if: github.event.repository.private == true && github.repository == 'DMoneyManZ/ProjectScope-Windows'
+    # Build only in the Windows repository; stage downloads in draft releases.
+    if: github.repository == 'DMoneyManZ/ProjectScope-Windows'
     permissions:
       contents: write
     runs-on: windows-2022
@@ -68,15 +68,15 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Native Windows tests failed' }
       - name: Build and test the frozen Windows application
         run: ./windows/build.ps1 -SkipDependencyInstall
-      - name: Save private packages and validation to a draft release
+      - name: Save preview packages and validation to a draft release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           $Tag = "windows-build-${{ github.run_id }}-${{ github.run_attempt }}"
-          $Notes = "Private tested Windows build from commit ${{ github.sha }}. Build and validation: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}."
+          $Notes = "Tested Windows build from commit ${{ github.sha }}. Build and validation: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}."
           Compress-Archive -Path windows-artifacts/validation/* -DestinationPath windows-artifacts/Windows-validation.zip
           gh release create $Tag --repo "${{ github.repository }}" --target "${{ github.sha }}" --draft --prerelease --title "Windows preview build ${{ github.run_id }}" --notes $Notes
-          if ($LASTEXITCODE -ne 0) { throw 'Could not create private draft release' }
+          if ($LASTEXITCODE -ne 0) { throw 'Could not create draft release' }
           $Assets = @(Get-ChildItem windows-artifacts -File | ForEach-Object { $_.FullName })
           gh release upload $Tag @Assets --repo "${{ github.repository }}"
-          if ($LASTEXITCODE -ne 0) { throw 'Could not upload private release assets' }
+          if ($LASTEXITCODE -ne 0) { throw 'Could not upload release assets' }

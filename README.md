@@ -2,9 +2,9 @@
 
 # ProjectScope-Windows
 
-Private development of the Windows edition of ProjectScope. Create a crosshair, tune it live, and keep it on screen with the editor tucked into the system tray.
+The Windows edition of ProjectScope. Create a crosshair, tune it live, and keep it on screen with the editor tucked into the system tray.
 
-**Status: private Windows preview 1.1.0-preview.1 available.** The [public Linux edition](https://github.com/DMoneyManZ/ProjectScope) remains a separate GNOME application. This repository and its Windows build artifacts are private.
+**Status: public Windows preview 1.1.0-preview.1 available.** The [public Linux edition](https://github.com/DMoneyManZ/ProjectScope) remains a separate GNOME application. The source and preview downloads are public.
 
 [Download the Windows preview](https://github.com/DMoneyManZ/ProjectScope-Windows/releases/tag/v1.1.0-preview.1) · [Install guide](docs/WINDOWS-INSTALL.md) · [Verified build results](docs/VALIDATION.md)
 
@@ -22,7 +22,7 @@ The first Windows backend uses ordinary opacity blending. GNOME's destination-co
 
 ## Install or build
 
-See the [Windows installation guide](docs/WINDOWS-INSTALL.md) for private downloads, bundled dependencies, source builds, and uninstall instructions. Preview downloads are listed in this repository's [Releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
+See the [Windows installation guide](docs/WINDOWS-INSTALL.md) for downloads, bundled dependencies, source builds, and uninstall instructions. Preview downloads are listed in this repository's [Releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
 
 From source on Windows with Python 3.12:
 
@@ -60,4 +60,4 @@ ProjectScope is free and open source. If it helps you, you can [support developm
 
 ## License
 
-Copyright © 2026 DMoneyManZ. [GPL-3.0-only](LICENSE). Dependency notices and corresponding source information ship with the Windows package. Private repository visibility does not change the license of the underlying ProjectScope code.
+Copyright © 2026 DMoneyManZ. [GPL-3.0-only](LICENSE). Dependency notices and corresponding source information ship with the Windows package.

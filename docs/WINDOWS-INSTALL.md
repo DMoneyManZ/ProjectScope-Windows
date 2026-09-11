@@ -1,21 +1,19 @@
 # ProjectScope for Windows
 
-**Version 1.1.0-preview.1 · Windows 11 x64 preview · Private builds**
+**Version 1.1.0-preview.1 · Windows 11 x64 preview · Public preview**
 
 ProjectScope includes its Python and Qt runtime. The packaged application does
 not require a separate Python installation, GNOME, GTK, or a package manager.
 This Windows backend draws a transparent desktop overlay and provides a native
 editor, personal presets, global shortcuts, and a system-tray menu.
 
-## Get the private build
+## Get the Windows preview
 
-Sign in to GitHub with an account that can access the private
-[ProjectScope-Windows releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
+Open the [ProjectScope-Windows releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
 Download the preview installer or portable ZIP and its `SHA256SUMS` file.
-The build workflow stores tested packages and synthetic validation in private
-draft releases; reviewed previews are listed on that same releases page.
-Source, logs, screenshots, and packages remain within this private repository.
-Nothing is uploaded to the public Linux repository.
+The release link and downloads can be shared directly; no repository invitation
+is needed. The build workflow stages tested packages in draft releases before
+reviewed previews become available on that releases page.
 
 A preview contains:
 
@@ -34,7 +32,7 @@ Get-Content .\SHA256SUMS
 
 Compare the hash with the line for that exact filename. The preview build is
 unsigned; Windows may show an unknown-publisher prompt. Obtain it from the
-private repository above and keep Windows security protections enabled.
+official repository above and keep Windows security protections enabled.
 
 ## Portable installation
 
@@ -123,7 +121,7 @@ performance. Exclusive-fullscreen and protected-game overlays are not guaranteed
 ProjectScope does not inject into games, read game memory, automate input, or
 change anti-cheat settings. Game and server rules still apply.
 
-The private `Windows-validation.zip` download contains the frozen application's synthetic
+The `Windows-validation.zip` download contains the frozen application's synthetic
 editor screenshot, native Windows smoke report, package file inventory, and
 build dependency versions. The smoke report distinguishes the actual Windows Qt
 platform from offscreen rendering. Normal operation does not capture the desktop;
