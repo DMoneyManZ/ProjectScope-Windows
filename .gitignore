@@ -19,3 +19,6 @@ support/transparency-example.png
 *.log
 *.pem
 *.key
+.venv/
+*.spec
+windows-artifacts/

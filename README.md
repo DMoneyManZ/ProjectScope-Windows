@@ -1,91 +1,55 @@
-<p align="center">
-  <img src="assets/banner.svg" alt="ProjectScope — Your crosshair. Your setup." width="100%">
-</p>
+<p align="center"><img src="assets/banner.svg" alt="ProjectScope-Windows crosshair studio" width="100%"></p>
 
-<p align="center">
-  <strong>A native crosshair studio for GNOME.</strong><br>
-  Build a design, tune it live, and keep it on screen with the editor closed.
-</p>
+# ProjectScope-Windows
 
-<p align="center">
-  <a href="https://github.com/DMoneyManZ/ProjectScope/releases/latest">Download</a> ·
-  <a href="docs/INSTALL.md">Install</a> ·
-  <a href="docs/USER-GUIDE.md">User guide</a> ·
-  <a href="docs/DEVELOPMENT.md">Development</a> ·
-  <a href="https://github.com/DMoneyManZ/ProjectScope/issues">Report an issue</a>
-</p>
+Private development of the Windows edition of ProjectScope. Create a crosshair, tune it live, and keep it on screen with the editor tucked into the system tray.
 
-![ProjectScope editor with its preset library, live preview, and appearance controls](docs/images/editor.png)
+**Status: Windows preview in development.** The [public Linux edition](https://github.com/DMoneyManZ/ProjectScope) remains a separate GNOME application. This repository and its Windows build artifacts are private.
 
-## Make it yours
+## What is included
 
-- **30 ready-made presets.** Start with a minimal dot, a precise cross, a ring, or one of the Sniper, SMG, Shotgun, and Pistol designs.
-- **Live editing.** Adjust geometry, color, outline, opacity, rotation, and scale from 0.25× to 8×.
-- **Controls within reach.** Toggle, cycle, randomize, save, recolor, and resize with customizable global shortcuts.
-- **An independent overlay.** Close the GTK4 editor and the GNOME extension keeps the crosshair available.
-- **Portable profiles.** Save personal presets and import or export a single design as validated JSON.
-- **Display controls.** Choose a monitor, set offsets, and optionally invert the crosshair against the background.
+- The same 30 stock presets and validated JSON import/export format as ProjectScope for Linux.
+- A Qt editor with live preview, lines/dot/ring geometry, color, outline, opacity, scale, and rotation controls.
+- A transparent, click-through overlay with monitor selection and position offsets.
+- Windows global hotkeys, conflict reporting, and a system-tray menu to reopen, toggle, or quit.
+- A packaged application with Python and Qt included, using the crosshair icon for the app and executable.
 
-## Install
+The first Windows backend uses ordinary opacity blending. GNOME's destination-color inversion is not available in this version. Desktop and borderless-window use is the initial target; protected-game and exclusive-fullscreen compatibility are not established.
 
-**Requires GNOME Shell 50 on Wayland, Python 3.10+, GTK4, PyGObject, Pycairo, and GLib tools.** Other GNOME versions and desktop environments are unsupported by this release. Check your actual GNOME version; an Ubuntu version alone does not establish compatibility.
+## Install or build
 
-Download **[ProjectScope-1.0.0-linux.run](https://github.com/DMoneyManZ/ProjectScope/releases/download/v1.0.0/ProjectScope-1.0.0-linux.run)** and **[SHA256SUMS](https://github.com/DMoneyManZ/ProjectScope/releases/download/v1.0.0/SHA256SUMS)** into the same folder, then run:
+See the [Windows installation guide](docs/WINDOWS-INSTALL.md) for private downloads, bundled dependencies, source builds, and uninstall instructions. Preview downloads will be listed in this repository's [Releases](https://github.com/DMoneyManZ/ProjectScope-Windows/releases).
 
-```bash
-sha256sum --check --ignore-missing SHA256SUMS
-chmod +x ProjectScope-1.0.0-linux.run
-./ProjectScope-1.0.0-linux.run --check
-./ProjectScope-1.0.0-linux.run
-```
+From source on Windows with Python 3.12:
 
-Proceed only when the checksum succeeds. The dependency check is read-only; the installer asks before installing into your user account. **Do not run it with sudo.** This is a Python-based runnable installer; system dependencies are installed separately.
+~~~powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r windows\requirements.txt
+.\.venv\Scripts\python.exe -m projectscope.windows
+~~~
 
-**Log out and back in**, then open **ProjectScope** from your application menu. Choose a preset and press **Home** to toggle it.
+Normal use stores preferences and personal presets under %LOCALAPPDATA%/ProjectScope. It does not capture the desktop, inspect games, send telemetry, or collect model-training data.
 
-Missing libraries? Run `./ProjectScope-1.0.0-linux.run --install-dependencies` for the optional Ubuntu/Debian dependency setup, then repeat the check. It uses your system package manager, requires internet access and administrator authorization, and does not upgrade GNOME.
-
-See [Installation](docs/INSTALL.md) for dependency packages, source installation, extraction, updates, and removal.
-
-## Default shortcuts
+## Default controls
 
 | Keys | Action |
 |---|---|
-| Home | Show / hide |
-| Page Up / Page Down | Previous / next saved preset |
-| Pause | Random design |
-| Insert | Save under the current preset name |
-| End | Next color |
+| Home | Show or hide |
+| Page Up / Page Down | Previous / next preset |
+| Pause | Randomize |
+| Insert | Save current design |
+| End | Cycle color |
 | Shift + Page Up / Page Down | Increase / decrease size |
 | Ctrl + Page Up / Page Down | Increase / decrease thickness |
 
-Change or disable any action in **Settings**. Saving under an existing name replaces your personal copy; rename first to keep a separate variant. [Read the user guide →](docs/USER-GUIDE.md)
+Shortcuts are global while ProjectScope is running. Conflicts with another application are reported rather than silently treated as working. Quit from the tray menu to release them.
 
-## Pick a starting point
+## Verification
 
-![Twenty-four weapon-style presets arranged by Sniper, SMG, Shotgun, and Pistol](support/preset-gallery.png)
+Windows CI tests portable presets, preferences, Qt rendering and controls, and native hotkey registration. The packaged executable runs a separate smoke check that records its native overlay window styles and captures its own editor window. This test-only capture is invoked with --smoke-test; normal operation does not capture screens.
 
-The gallery shows 24 of the 30 stock designs. Every preset is editable. These are visual styles; they do not detect weapons, track recoil, or predict bullet impact. [Explore the preset guide →](support/PRESET-GUIDE.md)
-
-<details>
-<summary><strong>See the overlay in use</strong></summary>
-
-![ProjectScope crosshair overlay in a desktop session](docs/images/overlay.png)
-
-</details>
-
-## How it works
-
-ProjectScope pairs a native Python/GTK4 editor with a GNOME Shell extension. The editor saves settings and profiles; the extension draws a click-through overlay at a chosen monitor's center, with optional offsets. It does not read game memory, inject into games, or automate input.
-
-Game and server rules still apply. Overlay permission and anti-cheat compatibility are not guaranteed, and a monitor-centered mark may differ from a game's actual aim. See [compatibility and limits](docs/USER-GUIDE.md#compatibility-and-resource-use) and the [recorded validation](VALIDATION.md).
-
-## Build with us
-
-See [Development](docs/DEVELOPMENT.md) for the source layout and checks, and [Contributing](CONTRIBUTING.md) for useful bug reports and changes.
+On Linux, portable UI tests use Qt's offscreen platform and do not prove Windows-native behavior. Real hardware checks are still needed for game behavior, taskbar/tray appearance, display scaling and monitor hotplug.
 
 ## License
 
-[GNU General Public License v3.0](LICENSE) (`GPL-3.0-only`).
-
-Copyright © 2026 DMoneyManZ.
+Copyright © 2026 DMoneyManZ. [GPL-3.0-only](LICENSE). Dependency notices and corresponding source information ship with the Windows package. Private repository visibility does not change the license of the underlying ProjectScope code.

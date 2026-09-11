@@ -17,13 +17,13 @@
   <circle cx="1040" cy="210" r="5" fill="#fff5d7"/>
   <g font-family="DejaVu Sans, sans-serif">
     <text x="68" y="151" fill="#f0f5f6" font-size="72" font-weight="700" letter-spacing="-3">ProjectScope</text>
-    <text x="72" y="214" fill="#93ddc0" font-size="29">Your crosshair. Your setup.</text>
+    <text x="72" y="214" fill="#93ddc0" font-size="29">Your crosshair. Now on Windows.</text>
     <text x="72" y="267" fill="#bed0db" font-size="21">Shape it. Save it. Keep it on screen.</text>
     <path d="M72 307H705" stroke="#466273"/>
     <text x="72" y="352" fill="#d7e2e8" font-size="17">Native editor</text>
     <circle cx="235" cy="346" r="3" fill="#93ddc0"/>
     <text x="260" y="352" fill="#d7e2e8" font-size="17">30 presets</text>
     <circle cx="402" cy="346" r="3" fill="#93ddc0"/>
-    <text x="427" y="352" fill="#d7e2e8" font-size="17">GNOME 50 desktop overlay</text>
+    <text x="427" y="352" fill="#d7e2e8" font-size="17">Windows desktop overlay</text>
   </g>
 </svg>
