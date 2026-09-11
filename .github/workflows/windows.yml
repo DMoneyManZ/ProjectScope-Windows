@@ -72,7 +72,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          $Tag = "windows-build-${{ github.run_id }}"
+          $Tag = "windows-build-${{ github.run_id }}-${{ github.run_attempt }}"
           $Notes = "Private tested Windows build from commit ${{ github.sha }}. Build and validation: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}."
           Compress-Archive -Path windows-artifacts/validation/* -DestinationPath windows-artifacts/Windows-validation.zip
           gh release create $Tag --repo "${{ github.repository }}" --target "${{ github.sha }}" --draft --prerelease --title "Windows preview build ${{ github.run_id }}" --notes $Notes
