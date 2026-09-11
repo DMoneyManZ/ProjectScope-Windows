@@ -100,4 +100,4 @@ Get-ChildItem $Output -File | Where-Object { $_.Extension -in @('.zip', '.exe') 
     $Hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
     "$Hash  $($_.Name)"
 } | Set-Content (Join-Path $Output "SHA256SUMS") -Encoding ascii
-Write-Host "Windows build artifacts: $Output"
+Write-Host "Private Windows build artifacts: $Output"
